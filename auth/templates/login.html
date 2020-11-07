@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Log In</title>
+</head>
+
+<body>
+  <h1>Log In your account</h1>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      {{ message }}
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+	<form action="/validate-account" method="POST">
+		<input name="email" type="email" placeholder="email">
+  <input name="password" type="password" minlength="6" maxlength="20" placeholder="password">
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>

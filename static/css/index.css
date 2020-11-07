@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+body {
+  background-image: url(https://i.ibb.co/DMYBsbq/Anime-Landscape-Backgrounds.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-family: 'Fira Sans', sans-serif;
+  color: white;
+}
+
+.jumbotron {
+  background: transparent;
+}
+
+
+.navbar-nav a:hover{
+  color: rgb(129, 0, 188) !important;
+  }
+
+.navbar-nav li:hover 
