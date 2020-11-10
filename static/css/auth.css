@@ -7,10 +7,14 @@ body {
   height: 100vh;
   font-family: 'Fira Sans', sans-serif;
   color: white;
+  max-height: 100vh;
 }
 
-.jumbotron {
-  background: transparent;
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .bg-dark {

@@ -1,33 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="/static/css/auth.css">
+<link rel="stylesheet" href="/static/css/navbar.css">
+{% endblock %}
+{% block title %}
+Droid!Multi - Sign Up
+{% endblock %}
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Sign Up</title>
-</head>
 
-<body>
-	<h1>Sign Up</h1>
-	<h2>Get your own droid!multi account now!</h2>
-	do not use your real password use password generators like 1password this site is still not secure
-	<br>
-  <h2>
+{% block body %}
+<div class="container-fluid">
+<div class="card col-sm-10 col-md-6 col-lg-4 bg-dark rounded">
+  <div class="card-body">
+  <h1 class="text-center card-title">Sign Up</h1>
 {% with messages = get_flashed_messages() %}
   {% if messages %}
     {% for message in messages %}
-      {{ message }}
+      <p class="text-center text-danger">{{ message }}</p>
     {% endfor %}
   {% endif %}
 {% endwith %}
-{% block body %}{% endblock %}
-  </h2>
-  <br>
-  <form method="POST" action='/signup/'>
-  <input name="username" type="text"  placeholder="username" minlength="3" maxlength="20">
-  <input name="password" type="password" minlength="3" maxlength="20" placeholder="password">
-  <input type="submit" value="Submit">
-  </form>
-  <script src="/static/signup.js"></script>
-</body>
-</html>
+	<form action="/signup/" method="POST">
+  <div class="form-group">
+    <label for="username">Username</label>
+		<input id="username" class="form-control" name="username" type="text"  placeholder="Enter your username" minlength="3" maxlength="20">
+    </div>
+    <div class="form-group">
+    <label for="password">Password</label>
+    <input id="password" class="form-control" name="password" type="password"  placeholder="Enter your password" minlength="6" maxlength="20">
+    <small class="form-text text-muted">Do not enter your primary password please use a password manager.</small>
+    </div>
+  <input class="btn btn-outline-light" type="submit" value="Submit">
+</form>
+</div>
+</div>
+</div>
+{% endblock %}

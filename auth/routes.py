@@ -31,7 +31,7 @@ def signup():
               post = {'username': username, 'password': password, 'ibancho_username': 'Not Verified', 'ibancho_id': 'Not Verified', 'recent_play': 'No plays yet', 'recent_score': 'No scores yet'}
               collection.insert_one(post)
               flash(f'Welcome to droid!multi Beta! {username}')
-              return redirect(f'/login/'{username})
+              return redirect('/login/')
             else:
               flash('Username Taken')
               return redirect('/signup/')
