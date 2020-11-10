@@ -1,6 +1,8 @@
 from flask import Flask
 from auth.routes import auth
 from view.routes import view
+from user.routes import user
+
 
 app = Flask(__name__)
 
@@ -10,6 +12,7 @@ app.secret_key = 'hello'
 
 app.register_blueprint(auth, url_prefix="")
 app.register_blueprint(view, url_prefix="")
+app.register_blueprint(user, url_prefix="/user/")
 
 
 

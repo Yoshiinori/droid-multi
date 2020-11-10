@@ -16,9 +16,9 @@
     {% endfor %}
   {% endif %}
 {% endwith %}
-	<form action="/validate-account" method="POST">
-		<input name="email" type="email" placeholder="email">
-  <input name="password" type="password" minlength="6" maxlength="20" placeholder="password">
+	<form action="/login/" method="POST">
+		<input name="username" type="text"  placeholder="username" minlength="3" maxlength="20">
+    <input name="password" type="password"  placeholder="password" minlength="6" maxlength="20">
   <input type="submit" value="Submit">
 </form>
 </body>

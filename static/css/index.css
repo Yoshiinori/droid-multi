@@ -14,8 +14,16 @@ body {
 }
 
 
-.navbar-nav a:hover{
-  color: rgb(129, 0, 188) !important;
-  }
+#side-menu {
+  color: white;
+  background: black;
+}
 
-.navbar-nav li:hover 
+.bg-dark {
+  background-color: black !important;
+  color: white;
+}
+
+.nav-link {
+  color: white !important;
+}
