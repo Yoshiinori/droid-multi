@@ -3,7 +3,10 @@
   background: black;
 }
 
-
+.bg-dark {
+  background-color: black !important;
+  color: white;
+}
 
 .nav-link {
   color: white !important;

@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+body {
+  background-image: url(https://i.ibb.co/DMYBsbq/Anime-Landscape-Backgrounds.jpg);
+  overflow: hidden;
+  background-size: cover;
+  height: 100vh;
+  font-family: 'Fira Sans', sans-serif;
+  color: white;
+  max-height: 100vh;
+}
+
+.container-fluid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.bg-dark {
+  background-color: black !important;
+  color: white;
+}

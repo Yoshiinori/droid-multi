@@ -1,19 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ username }}'s Profile</title>
-</head>
-<body>
-  <h1>hewwo {{ username }}!</h1>
-  <h2>Your Stats</h2>
-  <h3>ibancho Username: {{ user_stats['ibancho_username'] }}</h3>
-  <h3>ibancho ID: {{ user_stats['ibancho_username'] }}</h3>
-  <h3>recent_play: {{ user_stats['recent_play'] }}</h3>
-  <h3>recent_score: {{ user_stats['recent_score'] }}</h3>
-  {% if verify == True %}
-    <a href="/user/verify/">Verify</a>
-  {% endif %}
-</body>
-</html>
+{% extends "base.html" %} {% block css %}
+<link rel="stylesheet" href="/static/css/user.css">
+<link rel="stylesheet" href="/static/css/navbar.css"> {% endblock %} {% block title %} Droid!Multi - {{ username }}'s Profile
+{% endblock %} {% block body %}
+<div class="container-fluid">
+	<div class="card col-sm-10 col-md-6 col-lg-4 bg-dark rounded">
+		<div class="card-body">
+			{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+			<p>{{ message }}</p>
+			{% endfor %} {% endif %} {% endwith %}
+			<h2 class="card-title">{{ username }}'s Stats</h2>
+
+			<h5>ibancho Username: {{ user_stats['ibancho_username'] }}</h5>
+			<h5>ibancho ID: {{ user_stats['ibancho_username'] }}</h5>
+			<h5>recent_play: {{ user_stats['recent_play'] }}</h5>
+			<h5>recent_score: {{ user_stats['recent_score'] }}</h5>
+			{% if verify == True %}
+			<a href="/user/verify/">Verify Your Account</a>
+		</div>
+	</div>
+</div>
+{% endif %} {% endblock %}
