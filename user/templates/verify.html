@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Droid!Multi - Verify</title>
+</head>
+<body>
+  <h1>Instructions</h1>
+    <h3> click this <a href="https://osu.ppy.sh/beatmapsets/1020310#osu/2134863">link</a> and play the map and then write your ibancho id then click the verify button</h3>
+<label for="ibancho_id"></label>
+<input id="ibancho_id" type="text" name="ibancho_id" placeholder="Your Ibancho ID">
+<button onclick="verify();"></button>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p>{{ message }}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<script>
+  function verify() {
+    const ibancho_id = document.getElementById('ibancho_id').value;
+    window.location.href = `/user/verify/${ibancho_id}`
+  }
+</script>
+</body>
+</html>

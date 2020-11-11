@@ -12,5 +12,8 @@
   <h3>ibancho ID: {{ user_stats['ibancho_username'] }}</h3>
   <h3>recent_play: {{ user_stats['recent_play'] }}</h3>
   <h3>recent_score: {{ user_stats['recent_score'] }}</h3>
+  {% if verify == True %}
+    <a href="/user/verify/">Verify</a>
+  {% endif %}
 </body>
 </html>
