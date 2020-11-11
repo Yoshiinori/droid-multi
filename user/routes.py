@@ -59,8 +59,8 @@ def verify_user(ibancho_id):
     if 'username' in session:
         username = session['username']
         user_stats = {'username': username}
-        get_stats = collection.find_one({'username': username})
-        if get_stats['ibancho_id'] == 'Not Verified':
+        get_stats = collection.find_one({'ibancho_id': ibancho_id})
+        if get_stats == None:
             try:
                 get_user = requests.get(
                     f'http://ops.dgsrz.com/profile.php?uid={ibancho_id}')
@@ -68,7 +68,7 @@ def verify_user(ibancho_id):
                 ibancho_username = soup.find(class_='h3 m-t-xs m-b-xs').get_text()
                 latest_map = soup.find(class_='list-group-item').find(
                     class_='block').get_text()
-                if (latest_map == 'Mykal Williams - Splatoon - Splattack (Remix) (foxybus) [Easy]') and (get_stats[ibancho_username] == None):
+                if latest_map == 'Mykal Williams - Splatoon - Splattack (Remix) (foxybus) [Easy]':
                     data = {
                         '$set': {
                             'ibancho_id': ibancho_id,
@@ -79,15 +79,14 @@ def verify_user(ibancho_id):
                     return 'you are now verified'
                   
                 else:
-                    flash(
-                        'The id is taken'
-                    )
+                    flash('Please play the correct map')
                     return redirect('/user/verify')
             except:
-                flash('The id you have entered has not played the map, or you gave the wrong id,or you used someones id, or the id has been verified')
+                flash('Wrong ID')
                 return redirect('/user/verify/')
         else:
-          return redirect('/')
+          flash('The id is taken')
+          return redirect('/user/verify/')
     else:
       return redirect('/')
 
