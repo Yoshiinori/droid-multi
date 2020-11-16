@@ -20,7 +20,8 @@
   <input type="submit" value="Submit">
   </form>
 {% for beatmap in getbm %}
-  <a href='https://google.com'>{{ beatmap['version'] }}</a>
+<button onclick="mapSelect('{{ beatmap['title'] }}', '{{ beatmap['beatmapset_id'] }}', '{{ beatmap['version'] }}', '{{ beatmap['difficultyrating'] }}', '{{ beatmap['bpm'] }}', '{{ username }}')">{{ beatmap['version'] }}</button>
 {% endfor %}
 
+<script src="/static/js/new.js"></script>
 </body>
