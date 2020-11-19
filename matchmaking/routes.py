@@ -3,6 +3,10 @@ from ossapi import ossapi
 import os
 from pymongo import MongoClient
 from tinydb import TinyDB, Query
+import random
+import string
+
+random_room = ( ''.join(random.choice(string.ascii_uppercase) for i in range(4)) )
 
 mm = TinyDB('matchmaking.json')
 search = Query()
@@ -30,12 +34,13 @@ def new():
         beatmap_id = req['beatmap_id']
         getbm = osu.get_beatmaps({"s": beatmap_id})
         if not getbm:
-          flash('Please enter a valid beatmap id.')
+          flash('Please enter a valid beatmap id.', 'error')
           return redirect('/matchmaking/new/')
         else:
-          return render_template('selectmap.html', getbm=getbm, username=username)
+          flash(getbm, 'map')
+          return redirect('/matchmaking/new/')
       else:
-        return render_template('selectmap.html')
+        return render_template('new.html', username=username)
     else:
       flash('Please verify your account')
       return redirect(f'/user/{username}')
@@ -58,11 +63,23 @@ def main_lobby():
     else:
       return redirect('/')
   else:
-    req = request.json()
-    map_name = req['map_name']
-    map_id = req['map_id']
-    difficulty_name = req['difficulty_name']
-    stars = req['stars']
-    bpm = req['bpm']
-    player_host=  req['player_host']
+    req = request.form['data']
+    map = req.split('QAWSEDZXC')
+    map_name = map[0]
+    map_id = map[1]
+    difficulty_name = map[2]
+    stars = map[3]
+    bpm = map[4]
+    player_host =  map[5]
+    mm.insert({
+      'map_name': map_name,
+      'map_id': map_id,
+      'difficulty_name': difficulty_name,
+      'stars': stars,
+      'bpm': bpm,
+      'player1': player_host,
+      'player2': '',
+      'timer': 0,
+    })
+    return redirect('/matchmaking/')
 
