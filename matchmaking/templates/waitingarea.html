@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>waiting area</title>
+</head>
+<body>
+    <h1>Please Wait</h1>
+<script>
+    const redirectUser = data => {
+        if (data.exist === 'yes') {
+            window.location.replace('/room/{{ id }}')
+        }
+    }
+    setInterval(() => {
+        fetch('/room/exists/{{ id }}').then(res => res.json()).then(data => redirectUser(data));
+    }, 1000)
+</script>
+</body>
+</html>

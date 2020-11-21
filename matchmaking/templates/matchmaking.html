@@ -9,7 +9,16 @@
   <h1>Look for rooms here!</h1>
   <h1>
     {% for room in rooms%}
-      {{ room }}
+  <div>
+    {{ room['player1'] }}'s Room <br>
+    Map Name <br>
+    {{ room['map_name'] }} [{{ room['difficulty_name'] }}] <br>
+    Stars <br>
+    {{ room['stars'] }} <br>
+    BPM <br>
+    {{ room['bpm'] }} <br>
+    <input type="submit" value="MATCH!">
+  </div>
     {% endfor %}
   </h1>
 </body>

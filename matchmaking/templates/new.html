@@ -26,7 +26,7 @@
       {% for beatmaps in bmget %}
         <div>
         <form action="/matchmaking/" method='post'>
-        <input name='data' type="text" value='{{ beatmaps['title'] }}QAWSEDZXC{{ beatmaps['beatmap_id'] }}QAWSEDZXC{{ beatmaps['version'] }}QAWSEDZXC{{ beatmaps['difficultyrating'] }}QAWSEDZXC{{ beatmaps['bpm'] }}QAWSEDZXC{{ username }}' class="invisible">
+        <input name='data' type="text" value='{{ beatmaps['title'] }}QAWSEDZXC{{ beatmaps['beatmapset_id'] }}QAWSEDZXC{{ beatmaps['version'] }}QAWSEDZXC{{ beatmaps['difficultyrating'] }}QAWSEDZXC{{ beatmaps['bpm'] }}QAWSEDZXC{{ username }}' class="invisible">
         <input type="submit" value='{{ beatmaps['version'] }}'>
         </form>
         </div>

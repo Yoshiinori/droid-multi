@@ -17,7 +17,15 @@ def get_score():
     req = request.form
     score = req['score']
     us = req['username']
-    print(score + us)
+    play = req['map']
+    user_stats = {'ibancho_username': us}
+    data = {
+      '$set': {
+        'recent_play': play,
+        'recent_score': score
+      } 
+    }
+    collection.update_one(user_stats, data)
     
     return 'success'
   else:
