@@ -3,6 +3,7 @@ from pymongo import MongoClient
 import os
 from bs4 import BeautifulSoup
 import requests
+import env
 
 user = Blueprint('user', __name__, template_folder='templates')
 
@@ -12,6 +13,17 @@ port = os.environ['port']
 client = MongoClient(url, int(port))
 db = client.droidmulti
 collection = db.test
+
+@user.route('/stats/<username>/')
+def api_get(username):
+    user_stats = collection.find_one({'username': username})
+    if user_stats != None:
+        return {
+            'recent_score': user_stats['recent_score'],
+            'recent_play': user_stats['recent_play']
+        }
+    else:
+        return None
 
 
 @user.route('/<username>/')

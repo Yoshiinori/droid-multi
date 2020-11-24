@@ -2,6 +2,7 @@ from flask import Blueprint, request, render_template, redirect, session, flash
 import os
 from pymongo import MongoClient
 from datetime import timedelta
+import env
 
 auth = Blueprint('auth', __name__, template_folder='templates')
 

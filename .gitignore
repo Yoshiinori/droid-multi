@@ -2,4 +2,4 @@
 poetry.lock
 pyproject.toml
 .env
-.flaskenv
+testsnippets.py

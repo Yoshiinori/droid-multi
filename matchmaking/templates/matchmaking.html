@@ -17,7 +17,7 @@
     {{ room['stars'] }} <br>
     BPM <br>
     {{ room['bpm'] }} <br>
-    <input type="submit" value="MATCH!">
+    <a href="/matchmaking/{{ room['room_id'] }}">Join Now</a>
   </div>
     {% endfor %}
   </h1>

@@ -6,6 +6,7 @@ from tinydb import TinyDB, Query
 import random
 import string
 from datetime import datetime
+import env
 
 
 rm = TinyDB('room.json')
@@ -81,9 +82,8 @@ def main_lobby():
       'bpm': bpm,
       'player1': player_host,
       'player2': None,
-      'timer': None,
-      'timerend': None,
-      'room_id': random_room
+      'room_id': random_room,
+      'winner': None
     })
     return redirect(f'/matchmaking/{random_room}')
 
@@ -99,12 +99,6 @@ def waiting_area(id):
         if username != room['player1']:
           rm.insert(room)
           rm.update({'player2': username}, find.room_id == id)
-          time = str(datetime.utcnow()).split()[1].split('.')[0]
-          time_split = time.split(':')
-          time_add = int(time_split[1]) + 10
-          time_end = f'{time_split[0]}:{time_add}:{time_split[2]}'
-          rm.update({'timer': time}, find.room_id == id)
-          rm.update({'timerend': time_end}, find.room_id == id)
           mm.remove(find.room_id == id)
           return redirect(f'/room/{id}/')
         elif username == room['player1']:

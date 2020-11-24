@@ -6,7 +6,24 @@
    <title>Document</title>
 </head>
 <body>
-   <h1 class="timer"></h1>
-   <h3>Please download the map here</h3>
+   <h3>Please download the map <a href="https://osu.ppy.sh/beatmapsets/{{ room['map_id'] }}" target="_blank">here</a></h3>
+   {{ room }}
+   <h2 class="player_1">PLayer 1 stats: None</h2>
+   <h3 class="player_1"></h3>
+   <h2 class="player_2">Player 2 stats: None</h2>
+<script>
+   const player1 = document.querySelector('.player_1');
+   const player2 = document.querySelector('.player_2');
+   checkStatus = (stats) => {
+      if (stats.winner !== null) {
+         window.location.replace('/room/winner/{{ room['room_id'] }}')
+      }
+      player1.innerHTML = 'PLayer 1 stats: ' + stats.player1_stats
+      player2.innerHTML = 'PLayer 2 stats: ' + stats.player2_stats
+   }
+   setInterval(() => {
+      fetch('/room/stats/{{ room['room_id'] }}/').then(res => res.json()).then(data => checkStatus(data))
+   }, 1000)
+</script>
 </body>
 </html>

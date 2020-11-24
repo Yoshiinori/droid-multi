@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, session, flash
 from pymongo import MongoClient
 import os
+import env
 
 score = Blueprint('score', __name__)
 

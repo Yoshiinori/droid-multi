@@ -36,16 +36,10 @@ data = rm.all()
 droidtime = str(datetime.utcnow()).split()[1].split('.')[0]
 
 def hello():
-   delete = rm.get(find.timer == droidtime)
-   numba1 = delete.split(':')[1]
-   numba2 = droidtime.split(':')[1]
-   if int(numba1) >= int(numba2):
-      print('delete')
-   else:
-    print('')
+   rm.truncate()
        
 
       
-rt = RepeatedTimer(0.1, hello)
+rt = RepeatedTimer(10800, hello)
 
 
