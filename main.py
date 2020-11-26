@@ -5,6 +5,7 @@ from user.routes import user
 from score.routes import score
 from matchmaking.routes import matchmaking
 from room.routes import room
+import os
 
 
 
@@ -23,9 +24,17 @@ app.register_blueprint(room, url_prefix="/room/")
 
 
 
+if os.environ['app'] == 'production':
+  debug = True
+  port = 8080
+  host = '0.0.0.0'
+else:
+  debug = True
+  port = 5000
+  host = '127.0.0.1'
 
 if __name__ == "__main__":
-  app.run(debug=True, port=5000, host='127.0.0.1')
+    app.run(debug=debug, port=port, host=host)
 
 
 
