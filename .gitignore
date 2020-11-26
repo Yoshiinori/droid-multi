@@ -3,3 +3,4 @@ poetry.lock
 pyproject.toml
 .env
 testsnippets.py
+venv
