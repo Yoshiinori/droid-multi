@@ -4,3 +4,5 @@ pyproject.toml
 .env
 testsnippets.py
 venv
+matchmaking.json
+room.json
