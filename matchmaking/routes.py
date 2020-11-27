@@ -7,6 +7,7 @@ import random
 import string
 from datetime import datetime
 import env
+from discord_webhook import DiscordWebhook, DiscordEmbed
 
 
 rm = TinyDB('room.json')
@@ -22,6 +23,8 @@ port = os.environ['port']
 client = MongoClient(url, int(port))
 db = client.droidmulti
 collection = db.test
+
+webhook = DiscordWebhook(url=os.environ['webhook'])
 
 matchmaking = Blueprint('matchmaking', __name__, template_folder='templates')
 
@@ -85,6 +88,9 @@ def main_lobby():
       'room_id': random_room,
       'winner': None
     })
+    embed = DiscordEmbed(title=f'{player_host} Made a room!', description=f'**RoomID** {random_room}\n\nMap Name: {map_name}\nVersion: {difficulty_name}\nBPM: {bpm}', color=242424)
+    webhook.add_embed(embed)
+    response = webhook.execute()
     return redirect(f'/matchmaking/{random_room}')
 
 @matchmaking.route('/<id>/')

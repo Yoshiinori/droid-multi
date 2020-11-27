@@ -1,12 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-  <title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="/static/css/auth.css">
+<link rel="stylesheet" href="/static/css/navbar.css">
+{% endblock %}
+{% block title %}
+Droid!Multi - New Match
+{% endblock %}
+
+
+{% block body %}
+<div class="container-fluid">
+  <div class="card col-sm-10 col-md-6 col-lg-4 bg-dark rounded">
+    <div class="card-body">
 {% with errors = get_flashed_messages(category_filter=["error"]) %}
 {% if errors %}
   {% for msg in errors %}
@@ -14,26 +19,30 @@
   {% endfor %}
 {% endif %}
 {% endwith %}
-<h1>please enter the map id</h1>
+<h1 class="text-center card-title">Please enter a map id</h1>
+<div class="form-group">
 <form method='POST' action="/matchmaking/new/">
-  <input type="text" name="beatmap_id">
-  <input type="submit" value="Submit">
+  <input type="text" name="beatmap_id" class='form-control'>
+  <input type="submit" value="Submit" class="form-control col-3 mt-3 btn btn-outline-light">
   </form>
+</div>
 {% with maps = get_flashed_messages(category_filter=["map"]) %}
 {% if maps %}
   {% for msg in maps %}
       {% set bmget = msg %}
+      <h2 class="text-success">{{ bmget[0]['title'] }}</h2>
       {% for beatmaps in bmget %}
         <div>
         <form action="/matchmaking/" method='post'>
-        <input name='data' type="text" value='{{ beatmaps['title'] }}QAWSEDZXC{{ beatmaps['beatmapset_id'] }}QAWSEDZXC{{ beatmaps['version'] }}QAWSEDZXC{{ beatmaps['difficultyrating'] }}QAWSEDZXC{{ beatmaps['bpm'] }}QAWSEDZXC{{ username }}' class="invisible">
-        <input type="submit" value='{{ beatmaps['version'] }}'>
+        <input name='data' type="text" value='{{ beatmaps['title'] }}QAWSEDZXC{{ beatmaps['beatmapset_id'] }}QAWSEDZXC{{ beatmaps['version'] }}QAWSEDZXC{{ beatmaps['difficultyrating'] }}QAWSEDZXC{{ beatmaps['bpm'] }}QAWSEDZXC{{ username }}' class="invisible position-fixed">
+        <input type="submit" class="btn btn-outline-warning col-6 m-2" value='{{ beatmaps['version'] }}'>
         </form>
         </div>
        {% endfor %}  
   {% endfor %}
 {% endif %}
 {% endwith %}
-
-<script src="/static/js/new.js"></script>
-</body>
+</div>
+</div>
+</div>
+{% endblock %}

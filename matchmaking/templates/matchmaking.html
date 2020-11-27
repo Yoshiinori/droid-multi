@@ -1,25 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>matcmeking</title>
-</head>
-<body>
-  <h1>Look for rooms here!</h1>
+{% extends "base.html" %}
+{% block css %}
+<link rel="stylesheet" href="/static/css/auth.css">
+<link rel="stylesheet" href="/static/css/navbar.css">
+{% endblock %}
+{% block title %}
+Droid!Multi - Matchmaking
+{% endblock %}
+
+
+{% block body %}
+  <h1 class=".text-light text-center m-2">Look for rooms here!</h1>
   <h1>
     {% for room in rooms%}
-  <div>
-    {{ room['player1'] }}'s Room <br>
-    Map Name <br>
-    {{ room['map_name'] }} [{{ room['difficulty_name'] }}] <br>
-    Stars <br>
-    {{ room['stars'] }} <br>
-    BPM <br>
-    {{ room['bpm'] }} <br>
-    <a href="/matchmaking/{{ room['room_id'] }}">Join Now</a>
+  <div class="card bg-dark">
+    <div class="card-body">
+      <div>
+        <h3 class="card-title">{{ room['player1'] }}'s Room</h3>
+    <h4>
+    Map Name
+  </h4>
+  <h5>
+    {{ room['map_name'] }} [{{ room['difficulty_name'] }}]
+  </h5>
+</div>
+<div>
+    <h4>Stars</h4>
+    <h5>
+    {{ room['stars'] }}
+  </h5>
+  <h4>
+    BPM:
+    {{ room['bpm'] }}
+  </h4>
+</div>
+    <a class="btn btn-outline-danger" href="/matchmaking/{{ room['room_id'] }}">Join Now</a>
   </div>
+</div>
+</div>
     {% endfor %}
   </h1>
-</body>
-</html>
+  {% endblock %}
