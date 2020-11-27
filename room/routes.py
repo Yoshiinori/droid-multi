@@ -38,8 +38,8 @@ def stats(id):
    room = rm.get(find.room_id == id)
    user_score_one = collection.find_one({'username': room['player1']})['recent_score']
    user_score_two = collection.find_one({'username': room['player2']})['recent_score']
-   user_stats_one = collection.find_one({'username': room['player1']})['recent_play_full']
-   user_stats_two = collection.find_one({'username': room['player2']})['recent_play_full']
+   user_stats_one = collection.find_one({'username': room['player1']}).get('recent_play_full')
+   user_stats_two = collection.find_one({'username': room['player2']}).get('recent_play_full')
    user_one_version = user_stats_one.split()[-1].replace('[', '').replace('].osu', '')
    user_two_version = user_stats_two.split()[-1].replace('[', '').replace('].osu', '')
    user_one_song =  user_stats_one.split[0]
