@@ -38,13 +38,13 @@ def stats(id):
    room = rm.get(find.room_id == id)
    user_score_one = collection.find_one({'username': room['player1']})['recent_score']
    user_score_two = collection.find_one({'username': room['player2']})['recent_score']
-   user_stats_one = collection.find_one({'username': room['player1']})['recent_play']
-   user_stats_two = collection.find_one({'username': room['player2']})['recent_play']
+   user_stats_one = collection.find_one({'username': room['player1']})['recent_play_full']
+   user_stats_two = collection.find_one({'username': room['player2']})['recent_play_full']
    user_one_version = user_stats_one.split()[-1].replace('[', '').replace('].osu', '')
    user_two_version = user_stats_two.split()[-1].replace('[', '').replace('].osu', '')
-   user_one_song =  user_stats_one.replace(user_stats_one.split()[-1], '')
-   user_two_song =  user_stats_two.replace(user_stats_one.split()[-1], '')
-   if (user_one_song == room['map_name'] + ' ')  and (user_two_song == room['map_name'] + ' ') and (user_one_version == room['difficulty_name']) and (user_two_version == room['difficulty_name']):
+   user_one_song =  user_stats_one.split[0]
+   user_two_song =  user_stats_two.split[0]
+   if (user_one_song == room['map_id'])  and (user_two_song == room['map_id']) and (user_one_version == room['difficulty_name']) and (user_two_version == room['difficulty_name']):
       if user_score_one > user_score_two:
          rm.update({'winner': room['player1']} ,find.room_id == id)
       elif user_score_one < user_score_two:

@@ -8,7 +8,6 @@ from room.routes import room
 import os
 
 
-
 app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "WTH BRO"
@@ -25,7 +24,7 @@ app.register_blueprint(room, url_prefix="/room/")
 
 
 if os.environ['app'] == 'production':
-  debug = True
+  debug = False
   port = 8080
   host = '0.0.0.0'
 else:

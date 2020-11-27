@@ -33,13 +33,17 @@ find = Query()
 data = rm.all()
 
 
-droidtime = str(datetime.utcnow()).split()[1].split('.')[0]
-
-def hello():
-   rm.truncate()
+start_timep = str(datetime.utcnow()).split()[1].split('.')[0].split(':')[1]
+start_time = 49
+if int(start_time) + 11 >= 60:
+    end_time = int(start_time) + 11 - 60
+else:
+    end_time = int(start_time) + 11
+print(end_time)
+   
        
 
       
-rt = RepeatedTimer(10800, hello)
+# rt = RepeatedTimer(1, hello)
 
 

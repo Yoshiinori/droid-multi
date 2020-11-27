@@ -19,14 +19,16 @@ def get_score():
     score = req['score']
     us = req['username']
     play = req['map']
+    full_map = req['map_id']
     user_stats = {'ibancho_username': us}
     data = {
       '$set': {
         'recent_play': play,
-        'recent_score': score
+        'recent_score': score,
+        'recent_play_full': full_map
       } 
     }
-    collection.update_one(user_stats, data)
+    collection.update_one(user_stats, data, upsert=True)
     
     return 'success'
   else:
