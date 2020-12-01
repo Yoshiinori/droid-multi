@@ -52,7 +52,7 @@ def stats(id):
    except:
       user_one_version = user_score_one
       user_two_version = user_score_two
-   if (user_one_song == room['map_id'])  and (user_two_song == room['map_id']) and (user_one_version == room['difficulty_name']) and (user_two_version == room['difficulty_name']):
+   if (str(user_one_song) == room['map_id'])  and (str(user_two_song) == room['map_id']) and (user_one_version == room['difficulty_name']) and (user_two_version == room['difficulty_name']):
       if user_score_one > user_score_two:
          rm.update({'winner': room['player1']} ,find.room_id == id)
       elif user_score_one < user_score_two:
