@@ -29,7 +29,7 @@ def signup():
           username_info = collection.find_one({'username': username})
           if (len(username) >= 3) and (len(password) >= 6):
             if username_info == None:
-              post = {'username': username, 'password': password, 'ibancho_username': 'Not Verified', 'ibancho_id': 'Not Verified', 'recent_play': 'No plays yet', 'recent_score': 'No scores yet'}
+              post = {'username': username, 'password': password, 'ibancho_username': 'Not Verified', 'ibancho_id': 'Not Verified', 'recent_play': 'No plays yet', 'recent_score': 'No scores yet', 'recent_play_full': None}
               collection.insert_one(post)
               flash(f'Welcome to droid!multi Beta! {username}')
               return redirect('/login/')

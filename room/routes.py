@@ -40,11 +40,19 @@ def stats(id):
    user_score_two = collection.find_one({'username': room['player2']})['recent_score']
    user_stats_one = collection.find_one({'username': room['player1']})
    user_stats_two = collection.find_one({'username': room['player2']})
-   user_one_version = user_stats_one.split()[-1].replace('[', '').replace('].osu', '')
-   user_two_version = user_stats_two.split()[-1].replace('[', '').replace('].osu', '')
-   user_one_song =  user_stats_one.get('recent_play_full')
-   user_two_song =  user_stats_two.get('recent_play_full')
-   if (user_one_song.split()[0] == room['map_id'])  and (user_two_song.split()[0] == room['map_id']) and (user_one_version == room['difficulty_name']) and (user_two_version == room['difficulty_name']):
+   try:
+      user_one_song =  user_stats_one['recent_play_full'].split()[0]
+      user_two_song =  user_stats_two['recent_play_full'].split()[0]
+   except:
+      user_one_song =  user_stats_one['recent_play_full']
+      user_two_song =  user_stats_two['recent_play_full']
+   try:
+      user_one_version = user_score_one.split()[0].replace('[', '').replace('].osu', '')
+      user_two_version = user_score_two.split()[0].replace('[', '').replace('].osu', '')
+   except:
+      user_one_version = user_score_one
+      user_two_version = user_score_two
+   if (user_one_song == room['map_id'])  and (user_two_song == room['map_id']) and (user_one_version == room['difficulty_name']) and (user_two_version == room['difficulty_name']):
       if user_score_one > user_score_two:
          rm.update({'winner': room['player1']} ,find.room_id == id)
       elif user_score_one < user_score_two:
