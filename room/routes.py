@@ -47,12 +47,13 @@ def stats(id):
       user_one_song =  user_stats_one['recent_play_full']
       user_two_song =  user_stats_two['recent_play_full']
    try:
-      user_one_version = user_score_one.split()[0].replace('[', '').replace('].osu', '')
-      user_two_version = user_score_two.split()[0].replace('[', '').replace('].osu', '')
+      user_one_version = user_stats_one['recent_play'].split()[-1].replace('[', '').replace('].osu', '')
+      user_two_version = user_stats_two['recent_play'].split()[-1].replace('[', '').replace('].osu', '')
    except:
-      user_one_version = user_score_one
-      user_two_version = user_score_two
-   if (str(user_one_song) == room['map_id'])  and (str(user_two_song) == room['map_id']) and (user_one_version == room['difficulty_name']) and (user_two_version == room['difficulty_name']):
+      user_one_version = user_stats_one['recent_play']
+      user_two_version = user_stats_two['recent_play']
+   print(user_two_song)
+   if (user_one_song == room['map_id'])  and (user_two_song == room['map_id']) and (user_one_version == room['difficulty_name']) and (user_two_version == room['difficulty_name']):
       if user_score_one > user_score_two:
          rm.update({'winner': room['player1']} ,find.room_id == id)
       elif user_score_one < user_score_two:
