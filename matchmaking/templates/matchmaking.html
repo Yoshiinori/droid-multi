@@ -10,7 +10,8 @@ Droid!Multi - Matchmaking
 
 {% block body %}
   <h1 class=".text-light text-center m-2">Look for rooms here!</h1>
-  <h1>
+  <h1> <a href="/matchmaking/new/" class="btn btn-outline-light">New Room</a>
+    <div class="overflow-auto">
     {% for room in rooms%}
   <div class="card bg-dark">
     <div class="card-body">
@@ -39,4 +40,5 @@ Droid!Multi - Matchmaking
 </div>
     {% endfor %}
   </h1>
+</div>
   {% endblock %}
