@@ -80,7 +80,7 @@ def main_lobby():
     mm.insert({
       'map_name': map_name,
       'map_id': map_id,
-      'difficulty_name': difficulty_name,
+      'difficulty_name': f'[{difficulty_name}].osu',
       'stars': stars,
       'bpm': bpm,
       'player1': player_host,

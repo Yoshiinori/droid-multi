@@ -28,7 +28,7 @@ def get_score():
         'recent_play_full': full_map
       } 
     }
-    collection.update_one(user_stats, data, upsert=True)
+    collection.update_one(user_stats, data)
     
     return 'success'
   else:
