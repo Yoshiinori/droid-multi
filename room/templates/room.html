@@ -11,13 +11,27 @@
    <h2 class="player_1">PLayer 1 stats: None</h2>
    <h3 class="player_1"></h3>
    <h2 class="player_2">Player 2 stats: None</h2>
+   <h1 class="winner">No winner yet</h1>
+
 <script>
    const player1 = document.querySelector('.player_1');
    const player2 = document.querySelector('.player_2');
+   const winner = document.querySelector('.winner')
    checkStatus = (stats) => {
       if (stats.winner !== null) {
          window.location.replace('/room/winner/{{ room['room_id'] }}')
       }
+      const playerOne = parseInt(status.player1_score);
+      const playerTwo = parseInt(status.player2_score);
+
+      if (playerOne >= playerTwo) {
+        winner.innerHTML = "Player One is the winner"
+      } else if (playerOne == playerTwo) {
+        winner.innerHTML = "Its a tie!"
+      } else {
+        winner.innerHTML = "Player Two is the winner"
+      }
+
       player1.innerHTML = 'PLayer 1 stats: ' + stats.player1_stats
       player2.innerHTML = 'PLayer 2 stats: ' + stats.player2_stats
    }
