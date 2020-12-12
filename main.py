@@ -10,8 +10,8 @@ import os
 
 app = Flask(__name__)
 
-app.config["SECRET_KEY"] = "WTH BRO"
-app.secret_key = 'hello'
+app.config["SECRET_KEY"] = os.environ['SECRET']
+app.secret_key = os.environ['SECRET']
 
 
 app.register_blueprint(auth)
