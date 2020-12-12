@@ -20,7 +20,8 @@ osu = ossapi(api_key)
 url = os.environ['url']
 port = os.environ['port']
 
-client = MongoClient(url, int(port))
+uri = os.environ['mongo']
+client = MongoClient(uri)
 db = client.droidmulti
 collection = db.test
 

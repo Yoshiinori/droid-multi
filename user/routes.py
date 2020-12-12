@@ -10,7 +10,8 @@ user = Blueprint('user', __name__, template_folder='templates')
 url = os.environ['url']
 port = os.environ['port']
 
-client = MongoClient(url, int(port))
+uri = os.environ['mongo']
+client = MongoClient(uri)
 db = client.droidmulti
 collection = db.test
 
