@@ -61,6 +61,8 @@ def stats(id):
          rm.update({'winner': 'tie'} ,find.room_id == id)
    return {
       'player1_stats': user_one_song,
+      'player1_score': user_stats_one['recent_score'],
+      'player2_score': user_stats_two['recent_score'],
       'player2_stats': user_two_song,
       'winner': room['winner']
    }
